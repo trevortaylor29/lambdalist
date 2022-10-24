@@ -8,7 +8,9 @@ Odd numbers from the said list:
 [1, 3, 5, 7, 9]
 '''
 
-
+list1 = [1,2,3,4,5,6,7,8,9,10]
+filtered = list(filter(lambda num: num % 2, list1))
+print(filtered)
 
 
 
@@ -18,7 +20,9 @@ find which days of the week have exactly 6 characters.
 
 weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
+filtered = list(filter(lambda days: len(days)==6, weekdays))
 
+print(filtered)
 
 
 
@@ -39,7 +43,13 @@ After removing the specified words from the said list:
 
 '''
 
+list2 = ['orange', 'red','green','blue', 'white','black']
 
+remove = ['orange', 'black']
+
+filtered = list(filter(lambda days: (days not in remove), list2))
+
+print(filtered)
 
 
 
@@ -57,7 +67,11 @@ list2: [2, 4, 6, 8]
 Remove all elements from 'list1' present in 'list2:
 [1, 3, 5, 7, 9, 10]
  '''
+list1= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+list2= [2, 4, 6, 8]
 
+filtered = list(filter(lambda nums: nums not in list2, list1))
+print(filtered)
 
 
 
@@ -77,9 +91,15 @@ Elements of the said list that contain specific substring:
 []
 
 '''
+list1 = ['red', 'black', 'white', 'green', 'orange']
 
+string = 'ack'
+filtered = list(filter(lambda colors: colors.endswith(string), list1))
+print(filtered)
 
-
+string = 'abc'
+filtered = list(filter(lambda colors: colors in string, list1))
+print(filtered)
 
 
 
@@ -89,15 +109,20 @@ check whether a given string contains a capital letter, a lower case letter, a n
 '''
 
 str1 = "Hello8world"
-str1 = "HELLO"
-str1= "hello"
 
 
 
 
+checks = [lambda str1: any(x.isupper() for x in str1),
+          lambda str1: any(x.islower() for x in str1),
+          lambda str1: any(x.isdigit() for x in str1),
+          lambda str1: len(str1) >= 8
+          ]
 
-
-
+if all(check(str1) for check in checks):
+    print("Passed")
+else:
+    print('fail')
 
 
 
@@ -112,3 +137,9 @@ original_scores = [('English', 88), ('Science', 90), ('Maths', 97), ('Social sci
 # Expected Result:
 # [('Social sciences', 82), ('English', 88), ('Science', 90), ('Maths', 97)]
 '''
+
+original_scores = [('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)]
+
+original_scores.sort(key = lambda x: x[1])
+
+print(original_scores)
